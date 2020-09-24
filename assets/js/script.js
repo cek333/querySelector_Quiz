@@ -1,4 +1,5 @@
 let highScores; // array of high scores; stored as [xx-nn, xx-nn, xx-nn]
+let quizSelections = []; // indicies of questions to choose
 
 function hideAllSectionsExcept(secId) {
   // hide all sections
@@ -22,9 +23,16 @@ function showIntro() {
 
 function startQuiz() {
   hideAllSectionsExcept('quiz');
-  alert("Quiz Started!");
-  document.getElementById('quiz-status').innerHTML = "";
-  showQuizScore();
+  if (quizSelections.length > 0) {
+    let quizIdx = quizSelections.pop(); 
+    document.getElementById('question').innerHTML = quizQuestions[quizIdx].question;
+    document.getElementById('choice1').innerHTML = quizQuestions[quizIdx].choice1;
+    document.getElementById('choice2').innerHTML = quizQuestions[quizIdx].choice2;
+    document.getElementById('choice3').innerHTML = quizQuestions[quizIdx].choice3;
+    document.getElementById('choice4').innerHTML = quizQuestions[quizIdx].choice4;
+    //document.getElementById(quizQuestions[quizIdx].id).classList.add('bg-info');
+  }
+  setTimeout(showQuizScore, 5000);
 }
 
 function showQuizScore() {
@@ -35,7 +43,6 @@ function showQuizScore() {
 
 function showHighScores() {
   document.getElementById('highScoreList').innerHTML = "";
-  document.getElementById('highscore-status').innerHTML = "";
   hideAllSectionsExcept('highScores');
   if (highScores.length == 0) {
     document.getElementById('highscore-status').innerHTML = "There are currently no highscores.";
@@ -50,8 +57,7 @@ function showHighScores() {
   }
 }
 
-function updateHighScores(event) {
-  event.preventDefault();
+function updateHighScores() {
   document.getElementById('done-status').innerHTML = "";
   let score = document.getElementById('timerVal').textContent;
   // validate text input
@@ -102,5 +108,14 @@ if (tmp == null) {
   highScores = JSON.parse(tmp);
 }
 
+// randomize questions
+while (quizSelections.length<5) {
+  let idx = Math.floor(Math.random() * 10);
+  if (quizSelections.indexOf(idx)<0) {
+    quizSelections.push(idx);
+  }
+}
+console.log(`[global]`, quizSelections)
 
 showIntro();
+console.log(`[global]: ${quizQuestions[3].question}`);
