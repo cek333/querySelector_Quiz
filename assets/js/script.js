@@ -2,6 +2,7 @@ let highScores; // array of high scores; stored as [xx-nn, xx-nn, xx-nn]
 let quizSelections = []; // indicies of questions to choose
 let quizIdx; // index (in quizSelections[]) of currently displayed question
 let quizTimer; 
+let delayTimer;
 
 function hideAllSectionsExcept(secId) {
   // hide all sections
@@ -83,15 +84,16 @@ function checkQuizSelection(event) {
     document.getElementById('quiz-status').innerHTML = "Correct!"
   } else {
     document.getElementById('quiz-status').innerHTML = `Wrong! The correct answer is ${answer}.`;
+    // deduct 10 seconds from timer
     updateTimer(10);
   }
   // give 1sec for status to be displayed then go on to the next question
   if (quizSelections.length > 0) {
-    setTimeout(displayQuestion, 2000);
+    delayTimer = setTimeout(displayQuestion, 2000);
   } else {
     // stop timer
     clearInterval(quizTimer);
-    setTimeout(showQuizScore, 2000);
+    delayTimer = setTimeout(showQuizScore, 2000);
   }
 }
 
@@ -128,6 +130,9 @@ function updateHighScores() {
 }
 
 function showHighScores() {
+  // Stop all timers. Pressing 'View Highscores' will abort quiz in progress.
+  clearTimeout(delayTimer);
+  clearInterval(quizTimer);
   document.getElementById('highScoreList').innerHTML = "";
   hideAllSectionsExcept('highScores');
   if (highScores.length == 0) {
