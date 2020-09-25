@@ -1,6 +1,7 @@
 let highScores; // array of high scores; stored as [xx-nn, xx-nn, xx-nn]
 let quizSelections = []; // indicies of questions to choose
 let quizIdx; // index (in quizSelections[]) of currently displayed question
+let quizTimer; 
 
 function hideAllSectionsExcept(secId) {
   // hide all sections
@@ -30,8 +31,8 @@ function hideAllSectionsExcept(secId) {
 }
 
 function initQuiz() {
-  // temp test code
-  document.getElementById('timerVal').innerHTML = Math.floor(Math.random()*101);
+  // Initialize time to 2min
+  document.getElementById('timerVal').innerHTML = "120";
 
   // randomize questions
   quizSelections = [];
@@ -50,9 +51,19 @@ function showIntro() {
   hideAllSectionsExcept('intro');
 }
 
+function updateTimer(subVal) {
+  let curVal = Number(document.getElementById('timerVal').innerHTML);
+  curVal -= subVal;
+  document.getElementById('timerVal').innerHTML = curVal;
+}
+
 function displayQuestion() {
   hideAllSectionsExcept('quiz');
   if (quizSelections.length > 0) {
+    if (quizSelections.length==5) {
+      // first question => start timer
+      quizTimer = setInterval(updateTimer, 1000, 1);
+    }
     quizIdx = quizSelections.pop(); 
     document.getElementById('question').innerHTML = quizQuestions[quizIdx].question;
     document.getElementById('choice1').innerHTML = quizQuestions[quizIdx].choice1;
@@ -72,11 +83,14 @@ function checkQuizSelection(event) {
     document.getElementById('quiz-status').innerHTML = "Correct!"
   } else {
     document.getElementById('quiz-status').innerHTML = `Wrong! The correct answer is ${answer}.`;
+    updateTimer(10);
   }
   // give 1sec for status to be displayed then go on to the next question
   if (quizSelections.length > 0) {
     setTimeout(displayQuestion, 2000);
   } else {
+    // stop timer
+    clearInterval(quizTimer);
     setTimeout(showQuizScore, 2000);
   }
 }
