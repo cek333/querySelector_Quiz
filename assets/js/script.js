@@ -16,11 +16,11 @@ function hideAllSectionsExcept(secId) {
   document.getElementById('highscore-status').innerHTML = "";
   document.getElementById('initials').value = "";
   // clear code highlights
-  // let codeList = document.querySelectorAll('TBD');
-  // for (let idx=0; idx < codeList.length; idx++) {
-  //   codeList.classList.remove('bg-info');
-  // }
-  // console.log('[hideAllExcept]:', btnList);
+  let codeHighlights = document.querySelectorAll('#codeSnippet .border');
+  // only expecting one entry (despite loop)
+  for (let idx=0; idx < codeHighlights.length; idx++) {
+     codeHighlights[idx].classList.remove('border', 'border-danger');
+  }
   // Selected user choice remains pressed after question. Clear selection.
   let btnPressed = document.querySelectorAll("#multipleChoice button:focus");
   // only expecting one button pressed (despite loop)
@@ -54,7 +54,11 @@ function showIntro() {
 
 function updateTimer(subVal) {
   let curVal = Number(document.getElementById('timerVal').innerHTML);
-  curVal -= subVal;
+  if (subVal > curVal) {
+    curVal = 0;
+  } else {
+    curVal -= subVal;
+  }
   document.getElementById('timerVal').innerHTML = curVal;
 }
 
@@ -65,13 +69,12 @@ function displayQuestion() {
       // first question => start timer
       quizTimer = setInterval(updateTimer, 1000, 1);
     }
-    quizIdx = quizSelections.pop(); 
-    document.getElementById('question').innerHTML = quizQuestions[quizIdx].question;
+    quizIdx = quizSelections.shift(); 
     document.getElementById('choice1').innerHTML = quizQuestions[quizIdx].choice1;
     document.getElementById('choice2').innerHTML = quizQuestions[quizIdx].choice2;
     document.getElementById('choice3').innerHTML = quizQuestions[quizIdx].choice3;
     document.getElementById('choice4').innerHTML = quizQuestions[quizIdx].choice4;
-    //document.getElementById(quizQuestions[quizIdx].id).classList.add('bg-info');
+    document.getElementById(quizQuestions[quizIdx].question).classList.add('border', 'border-danger');
   }
 }
 
