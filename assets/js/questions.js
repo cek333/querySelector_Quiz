@@ -1,92 +1,97 @@
+/* 
+// HTML snippet on which questions are based
+   <main>
+     <section>
+hl1    <h1>Lorem ipsum dolor</h1>
+hl2    <p class="checked">Sit amet consectetur adipisicing elit.</p>
+hl3    <input type="radio" id="ipsum" name="lorem" value="lorem" checked>
+hl4    <label for="ipsum">dolor</label><br>
+hl5    <p class="ipsum">Exercitation earum eligendi alias fugit</p> 
+hl6    <p id="lorem">Example: [hl7] <img src="http://sample.img" alt="sample1"></p>
+hl8    <img class="checked" src="http://sample.img" alt="sample2">
+     </section>
+   </main> 
+*/
+
 let quizQuestions = [
   { 
-    question: "question-1 question-1 question-1",
-    choice1: "question-1 choice-1",
-    choice2: "question-1 choice-2",
-    choice3: "question-1 choice-3",
-    choice4: "question-1 choice-4",
-    id: 'xxx',
+    question: "hl2", // id of code snippet to highlight
+    choice1: "main > p",
+    choice2: "p.checked",
+    choice3: "section input",
+    choice4: "#checked",
     answer: 2
   },
   { 
-    question: "question-2 question-2 question-2",
-    choice1: "question-2 choice-1",
-    choice2: "question-2 choice-2",
-    choice3: "question-2 choice-3",
-    choice4: "question-2 choice-4",
-    id: 'xxx',
+    question: "hl5",
+    choice1: ".ipsum",
+    choice2: "main > p",
+    choice3: "#ipsum",
+    choice4: "p[ipsum]",
     answer: 1
   },
   { 
-    question: "question-3 question-3 question-3",
-    choice1: "question-3 choice-1",
-    choice2: "question-3 choice-2",
-    choice3: "question-3 choice-3",
-    choice4: "question-3 choice-4",
-    id: 'xxx',
+    question: "hl3",
+    choice1: "p input",
+    choice2: "main > input",
+    choice3: "input",
+    choice4: ".ipsum",
     answer: 3
   },
   { 
-    question: "question-4 question-4 question-4",
-    choice1: "question-4 choice-1",
-    choice2: "question-4 choice-2",
-    choice3: "question-4 choice-3",
-    choice4: "question-4 choice-4",
-    id: 'xxx',
+    question: "hl8",
+    choice1: "p > img",
+    choice2: "#checked",
+    choice3: "img[alt=\"sample1\"]",
+    choice4: "section > img",
     answer: 4
   },
   { 
-    question: "question-5 question-5 question-5",
-    choice1: "question-5 choice-1",
-    choice2: "question-5 choice-2",
-    choice3: "question-5 choice-3",
-    choice4: "question-5 choice-4",
-    id: 'xxx',
+    question: "hl4",
+    choice1: "#ipsum",
+    choice2: "input + label",
+    choice3: ".ipsum",
+    choice4: "main > label",
     answer: 2
   },
   { 
-    question: "question-6 question-6 question-6",
-    choice1: "question-6 choice-1",
-    choice2: "question-6 choice-2",
-    choice3: "question-6 choice-3",
-    choice4: "question-6 choice-4",
-    id: 'xxx',
+    question: "hl3",
+    choice1: "[type]",
+    choice2: "p + label",
+    choice3: ".ipsum",
+    choice4: "main > input",
     answer: 1
   },
   { 
-    question: "question-7 question-7 question-7",
-    choice1: "question-7 choice-1",
-    choice2: "question-7 choice-2",
-    choice3: "question-7 choice-3",
-    choice4: "question-7 choice-4",
-    id: 'xxx',
+    question: "hl7",
+    choice1: ".lorem",
+    choice2: "img[alt=\"sample2\"]",
+    choice3: "img[alt=\"sample1\"]",
+    choice4: "p + img",
     answer: 3
   },
   { 
-    question: "question-8 question-8 question-8",
-    choice1: "question-8 choice-1",
-    choice2: "question-8 choice-2",
-    choice3: "question-8 choice-3",
-    choice4: "question-8 choice-4",
-    id: 'xxx',
+    question: "hl6",
+    choice1: ".lorem",
+    choice2: "#lorem",
+    choice3: ".ipsum",
+    choice4: ".checked",
     answer: 2
   },
   { 
-    question: "question-9 question-9 question-9",
-    choice1: "question-9 choice-1",
-    choice2: "question-9 choice-2",
-    choice3: "question-9 choice-3",
-    choice4: "question-9 choice-4",
-    id: 'xxx',
+    question: "hl1",
+    choice1: "h2",
+    choice2: "main > h1",
+    choice3: ".lorem",
+    choice4: "section :first-child",
     answer: 4
   },
   { 
-    question: "question-10 question-10 question-10",
-    choice1: "question-10 choice-1",
-    choice2: "question-10 choice-2",
-    choice3: "question-10 choice-3",
-    choice4: "question-10 choice-4",
-    id: 'xxx',
+    question: "hl8",
+    choice1: "#checked",
+    choice2: "section > :last-child",
+    choice3: "p img",
+    choice4: "img[alt=\"sample1\"]",
     answer: 2
   }
 ]
