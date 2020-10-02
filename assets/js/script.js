@@ -22,11 +22,13 @@ function hideAllSectionsExcept(secId) {
      codeHighlights[idx].classList.remove('border', 'border-danger');
   }
   // Selected user choice remains pressed after question. Clear selection.
-  let btnPressed = document.querySelectorAll("#multipleChoice button:focus");
-  // only expecting one button pressed (despite loop)
-  for (let idx=0; idx < btnPressed.length; idx++) {
-    btnPressed[idx].blur();
+  let btnId = document.activeElement.getAttribute('id');
+  // console.log(`[hideAllExcept]: ${btnId}`, document.activeElement);
+  // Check that it's a multiplechoice button.
+  if ((btnId != null) && (btnId.indexOf("choice")>=0)) {
+    document.activeElement.blur();
   }
+
   // unhide specifed section
   document.getElementById(secId).style.display = "block";
 }
