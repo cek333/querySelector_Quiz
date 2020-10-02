@@ -7,8 +7,8 @@ hl2    <p class="checked">Sit amet consectetur adipisicing elit.</p>
 hl3    <input type="radio" id="ipsum" name="lorem" value="lorem" checked>
 hl4    <label for="ipsum">dolor</label><br>
 hl5    <p class="ipsum">Exercitation earum eligendi alias fugit</p> 
-hl6    <p id="lorem">Example: [hl7] <img src="http://sample.img" alt="sample1"></p>
-hl8    <img class="checked" src="http://sample.img" alt="sample2">
+hl6    <p id="lorem">Example: [hl7] <img src="./img.gif" alt="ex1"></p>
+hl8    <img class="checked" src="./img.gif" alt="ex2">
      </section>
    </main> 
 */
@@ -42,7 +42,7 @@ let quizQuestions = [
     question: "hl8",
     choice1: "p > img",
     choice2: "#checked",
-    choice3: "img[alt=\"sample1\"]",
+    choice3: "img[alt=\"ex1\"]",
     choice4: "section > img",
     answer: 4
   },
@@ -65,8 +65,8 @@ let quizQuestions = [
   { 
     question: "hl7",
     choice1: ".lorem",
-    choice2: "img[alt=\"sample2\"]",
-    choice3: "img[alt=\"sample1\"]",
+    choice2: "img[alt=\"ex2\"]",
+    choice3: "img[alt=\"ex1\"]",
     choice4: "p + img",
     answer: 3
   },
@@ -91,7 +91,7 @@ let quizQuestions = [
     choice1: "#checked",
     choice2: "section > :last-child",
     choice3: "p img",
-    choice4: "img[alt=\"sample1\"]",
+    choice4: "img[alt=\"ex1\"]",
     answer: 2
   }
 ]
