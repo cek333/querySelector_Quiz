@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <main>
+    <section>
+      <h1>Lorem ipsum dolor</h1>
+      <p class="checked">Sit amet consectetur adipisicing elit.</p>
+      <input type="radio" id="ipsum" name="lorem" value="lorem" checked>
+      <label for="ipsum">dolor</label><br>
+      <p class="ipsum">Exercitation earum eligendi alias fugit</p> 
+      <p id="lorem">Example: <img src="http://sample.img" alt="sample1"></p>
+      <img class="checked" src="http://sample.img" alt="sample2">
+    </section>
+  </main><br><br>
+  <code>
+  <span>&lt;main&gt;</span><br>
+  <span>&nbsp;&nbsp;&lt;section&gt;</span><br>
+  <span id="hl1">&nbsp;&nbsp;&nbsp;&nbsp;&lt;h1&gt;Lorem ipsum dolor&lt;/h1&gt;</span><br>
+  <span id="hl2">&nbsp;&nbsp;&nbsp;&nbsp;&lt;p class=&quot;checked&quot;&gt;Sit amet consectetur adipisicing elit.&lt;/p&gt;</span><br>
+  <span id="hl3">&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type=&quot;radio&quot; id=&quot;ipsum&quot; name=&quot;lorem&quot; value=&quot;lorem&quot; checked&gt;</span><br>
+  <span id="hl4">&nbsp;&nbsp;&nbsp;&nbsp;&lt;label for=&quot;ipsum&quot;&gt;dolor&lt;/label&gt;</span><span>&lt;br&gt;</span><br>
+  <span id="hl5">&nbsp;&nbsp;&nbsp;&nbsp;&lt;p class=&quot;ipsum&quot;&gt;Exercitation earum eligendi alias fugit&lt;/p&gt; </span><br>
+  <span id="hl6">&nbsp;&nbsp;&nbsp;&nbsp;&lt;p id=&quot;lorem&quot;&gt;Example: <span id="hl7">&lt;img src=&quot;http://sample.img&quot; alt=&quot;sample1&quot;&gt;</span>&lt;/p&gt;</span><br>
+  <span id="hl8">&nbsp;&nbsp;&nbsp;&nbsp;&lt;img class=&quot;checked&quot; src=&quot;http://sample.img&quot; alt=&quot;sample2&quot;&gt;</span><br>
+  <span>&nbsp;&nbsp;&lt;/section&gt;</span><br>
+  <span>&lt;/main&gt;</span><br>
+  </code>
+  <script>
+    // class selectors
+    console.log(`p class checked: correct`, document.querySelector('p.checked')); // hl2
+    console.log(`p class checked: wrong`, document.querySelector('main > p'));
+    console.log(`p class checked: wrong`, document.querySelector('section input'));
+    console.log(`p class checked: wrong`, document.querySelector('#checked'));
+
+    console.log(`p class ipsum: correct`, document.querySelector('.ipsum')); // hl5
+    console.log(`p class ipsum: wrong`, document.querySelector('main > p'));
+    console.log(`p class ipsum: wrong`, document.querySelector('#ipsum'));
+    console.log(`p class ipsum: wrong`, document.querySelector('p[ipsum]'));
+
+    // descendants
+    console.log(`input type radio: correct`, document.querySelector('input')); // hl3
+    console.log(`input type radio: wrong`, document.querySelector('p input'));
+    console.log(`input type radio: wrong`, document.querySelector('main > input'));
+    console.log(`input type radio: wrong`, document.querySelector('.ipsum'));
+
+    console.log(`section img: correct`, document.querySelector('section > img')); // hl8
+    console.log(`section img: wrong`, document.querySelector('p > img'));
+    console.log(`section img: wrong`, document.querySelector('#checked'));
+    console.log(`section img: wrong`, document.querySelector('img[alt="sample1"]'));
+
+    console.log(`label: correct`, document.querySelector('input + label')); // hl4
+    console.log(`label: wrong`, document.querySelector('#ipsum'));
+    console.log(`label: wrong`, document.querySelector('.ipsum'));
+    console.log(`label: wrong`, document.querySelector('main > label'));
+
+    // attribute
+    console.log(`input: correct`, document.querySelector('[type]')); // hl3
+    console.log(`input: wrong`, document.querySelector('p + label'));
+    console.log(`input: wrong`, document.querySelector('.ipsum'));
+    console.log(`input: wrong`, document.querySelector('main > input'));
+
+    console.log(`img sample1: correct`, document.querySelector('img[alt="sample1"]')); // hl7
+    console.log(`img sample1: wrong`, document.querySelector('.lorem'));
+    console.log(`img sample1: wrong`, document.querySelector('img[alt="sample2"]'));
+    console.log(`img sample1: wrong`, document.querySelector('p + img'));
+
+    // id
+    console.log(`p lorem: correct`, document.querySelector('#lorem')); // hl6
+    console.log(`p lorem: wrong`, document.querySelector('.lorem'));
+    console.log(`p lorem: wrong`, document.querySelector('.ipsum'));
+    console.log(`p lorem: wrong`, document.querySelector('.checked'));
+
+    // pseudoclass
+    console.log(`h1: correct`, document.querySelector('section :first-child')); // hl1
+    console.log(`h1: wrong`, document.querySelector('h2'));
+    console.log(`h1: wrong`, document.querySelector('main > h1'));
+    console.log(`h1: wrong`, document.querySelector('.lorem'));
+
+    console.log(`img checked: correct`, document.querySelector('section > :last-child')); // hl8
+    console.log(`img checked: wrong`, document.querySelector('#checked'));
+    console.log(`img checked: wrong`, document.querySelector('p img'));
+    console.log(`img checked: wrong`, document.querySelector('img[alt="sample1"]'));
+
+  </script>  
+</body>
+</html>
