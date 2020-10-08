@@ -35,7 +35,7 @@ function hideAllSectionsExcept(secId) {
 
 function initQuiz() {
   // Initialize time to 2min
-  document.getElementById('timerVal').innerHTML = "120";
+  document.getElementById('timerVal').innerHTML = "60";
 
   // randomize questions
   quizSelections = [];
@@ -54,17 +54,31 @@ function showIntro() {
   hideAllSectionsExcept('intro');
 }
 
+function abortQuiz() {
+  // Stop all timers. 
+  // Note, clicking on multipleChoice button sets up timer to advance to next question, 
+  //   so first disable multipleChoice buttons
+  clearTimeout(delayTimer);
+  clearInterval(quizTimer);
+}
+
 function updateTimer(subVal) {
   let curVal = Number(document.getElementById('timerVal').innerHTML);
-  if (subVal > curVal) {
+  if (subVal >= curVal) {
     curVal = 0;
   } else {
     curVal -= subVal;
   }
   document.getElementById('timerVal').innerHTML = curVal;
+  if (curVal == 0) {
+    abortQuiz();
+    showQuizScore();
+  }
 }
 
 function displayQuestion() {
+  // handle case of advancing to next question after timer reaches 0.
+  if (Number(document.getElementById('timerVal').innerHTML) == 0) return;
   hideAllSectionsExcept('quiz');
   if (quizSelections.length > 0) {
     if (quizSelections.length==5) {
@@ -135,9 +149,8 @@ function updateHighScores() {
 }
 
 function showHighScores() {
-  // Stop all timers. Pressing 'View Highscores' will abort quiz in progress.
-  clearTimeout(delayTimer);
-  clearInterval(quizTimer);
+  // Pressing 'View Highscores' will abort quiz in progress.
+  abortQuiz();
   document.getElementById('highScoreList').innerHTML = "";
   hideAllSectionsExcept('highScores');
   if (highScores.length == 0) {
